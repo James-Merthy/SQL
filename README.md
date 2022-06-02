@@ -358,6 +358,97 @@ SELECT section_id , CONVERT(AVG(year_result), DECIMAL(20, 8)) AS "Moyenne" , MAX
 
 
 
+ Partie V : CUBE et ROLLUP
+ 
+Exercice 2.5.1 – L’utilisation de « ROLLUP » crée des groupes de données en se déplaçant dans 
+une seule direction, partant de la gauche vers la droite par rapport aux colonnes sélectionnées ? 
+(Vrai/Faux) 
+
+
+Exercice 2.5.2 – Le résultat produit par un « ROLLUP » présente les résultats du plus agrégé au 
+moins agrégé ? (Vrai/Faux) 
+
+Exercice 2.5.3 – L’opérateur « CUBE » permet de produire moins de sous-totaux qu’avec 
+l’opérateur « ROLLUP » ? (Vrai/Faux) 
+
+Exercice 2.5.4 – Avec l’opérateur « CUBE », le nombre de groupes dans le résultat est 
+indépendant du nombre de colonnes sélectionnées dans le « GROUP BY » ? (Vrai/Faux) 
+
+
+Exercice 2.5.5 – L’opérateur « CUBE » ne peut pas être appliqué à la fonction d’agrégation 
+« SUM » ? (Vrai/Faux) 
+
+
+Exercice 2.5.6 – Donner la moyenne exacte des résultats obtenus par les étudiants par section 
+et par cours, ainsi que la moyenne par section uniquement et enfin, la moyenne générale. La liste 
+ainsi produite reprend l’id de section, de cours le résultat moyen (dans une colonne appelée « 
+Moyenne »). Se baser uniquement sur les sections 1010 et 1320 
+
+
+
+Exercice 2.5.7 – Donner la moyenne exacte des résultats obtenus par les étudiants par cours et
+par section, ainsi que la moyenne par cours uniquement, puis par section uniquement et enfin, la 
+moyenne générale. La liste ainsi produite reprend l’id de section, de cours le résultat moyen (dans 
+une colonne appelée « Moyenne »). Se baser uniquement sur les sections 1010 et 1320 
+
+
+Exercice 2.5.8 – Ceci clôture la troisième partie DRL du cours. Avant de passer à la suite 
+de la matière, nous vous invitons à prendre un peu de temps afin d’évaluer 
+personnellement votre niveau de compréhension de la matière en vous référant aux 
+derniers slides du module (slides d’auto-évaluation)
+
+
+
+ Partie VI : Jointures
+Exercice 2.6.1 – Donner pour chaque cours le nom du professeur responsable ainsi que la 
+section dont le professeur fait partie 
+
+
+Exercice 2.6.2 – Donner pour chaque section, l’id, le nom et le nom de son délégué. Classer les 
+sections dans l’ordre inverse des id de section. Un délégué est un étudiant de la table « STUDENT »
+
+
+Exercice 2.6.3 – Donner pour chaque section, le nom des professeurs qui en sont membre 
+
+
+
+Exercice 2.6.4 – Même objectif que la question 3 mais seuls les sections comportant au moins 
+un professeur doivent être reprises 
+
+
+Exercice 2.6.5 – Donner à chaque étudiant ayant obtenu un résultat annuel supérieur ou égal à
+12 son grade en fonction de son résultat annuel et sur base de la table grade. La liste doit être 
+classée dans l’ordre alphabétique des grades attribués 
+
+
+
+Exercice 2.6.6 – Donner la liste des professeurs et la section à laquelle ils se rapportent ainsi 
+que le(s) cour(s) (nom du cours et crédits) dont le professeur est responsable. La liste est triée par 
+ordre décroissant des crédits attribués à un cours 
+
+
+
+Exercice 2.6.7 – Donner pour chaque professeur son id et le total des crédits ECTS 
+(« ECTS_TOT ») qui lui sont attribués. La liste proposée est triée par ordre décroissant de la somme 
+des crédits alloués 
+
+
+
+Exercice 2.6.8 – Donner la liste (nom et prénom) de l’ensemble des professeurs et des 
+étudiants dont le nom est composé de plus de 8 lettres. Ajouter une colonne pour préciser la 
+catégorie (S pour « STUDENT », P pour « PROFESSOR ») à laquelle appartient l’individu 
+
+
+
+Exercice 2.6.9 – Donner l’id de chacune des sections qui n’ont pas de professeur attitré 
+
+
+Exercice 2.6.10 – Ceci clôture la quatrième partie DRL du cours. Avant de passer à la 
+suite de la matière, nous vous invitons à prendre un peu de temps afin d’évaluer 
+personnellement votre niveau de compréhension de la matière en vous référant aux 
+derniers slides du module (slides d’auto-évaluation)
+
+
 
 
 
