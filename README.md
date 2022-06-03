@@ -441,7 +441,7 @@ SELECT p.professor_id, SUM(c.course_ects) AS "ECTS_TOT"
 FROM professor p
 LEFT JOIN course c ON c.professor_id = p.professor_id
 GROUP BY p.professor_id 
-ORDER BY c.course_ects DESC
+ORDER BY ECTS_TOT  DESC
 
 Exercice 2.6.8 – Donner la liste (nom et prénom) de l’ensemble des professeurs et des 
 étudiants dont le nom est composé de plus de 8 lettres. Ajouter une colonne pour préciser la 
@@ -461,7 +461,75 @@ personnellement votre niveau de compréhension de la matière en vous référant
 derniers slides du module (slides d’auto-évaluation)
 
 
+ Partie VII : Requêtes imbriquées
+ 
+Exercice 2.7.1 – Donner la liste des étudiants (nom et prénom) qui font partie de la même 
+section que mademoiselle « Roberts ». La liste doit être classée par ordre alphabétique sur le nom 
+et mademoiselle « Roberts » ne doit pas apparaitre dans la liste
 
+
+
+Exercice 2.7.2 – Donner la liste des étudiants (nom, prénom et résultat) de l’ensemble des 
+étudiants ayant obtenu un résultat annuel supérieur au double du résultat moyen pour l’ensemble 
+des étudiants 
+
+SELECT st.last_name , st.first_name , st.year_result FROM student st WHERE year_result >= ( SELECT FLOOR(AVG (year_result) * 2) FROM student );
+
+Exercice 2.7.3 – Donner la liste de toutes les sections qui n’ont pas de professeur 
+
+SELECT s.section_id , section_name FROM section s LEFT JOIN professor p ON p.section_id = s.section_id WHERE p.professor_id IS NULL;
+
+Exercice 2.7.4 – Donner la liste des étudiants qui ont comme mois de naissance le mois 
+correspondant à la date d’engagement du professeur « Giot ». Classer les étudiants par ordre de 
+résultat annuel décroissant 
+
+SELECT st.last_name , st.first_name , st.birth_date ,st.year_result FROM student st WHERE MONTH(st.birth_date) = ( SELECT MONTH(p.professor_hire_date) FROM professor p WHERE p.professor_name LIKE "Giot" );
+
+Exercice 2.7.5 – Donner la liste des étudiants qui ont obtenu le grade « TB » pour leur résultat 
+annuel 
+
+SELECT st.last_name , st.first_name , st.year_result FROM student st WHERE st.year_result >= ( SELECT g.lower_bound FROM grade g WHERE g.grade LIKE "TB" GROUP BY g.grade ) AND st.year_result < 18;
+
+Exercice 2.7.6 – Donner la liste des étudiants qui appartienne à la section pour laquelle 
+Mademoiselle « Marceau » est déléguée 
+
+SELECT st.last_name , st.first_name , st.section_id
+FROM student st
+WHERE st.section_id = (
+	SELECT s.section_id
+    FROM section s
+    WHERE s.delegate_id = (
+    	SELECT student_id FROM student WHERE last_name LIKE "Marceau"
+    )
+    
+);
+
+
+Exercice 2.7.7 – Donner la liste des sections qui se composent de plus de quatre étudiants 
+
+SELECT s.section_id , s.section_name
+FROM section s
+WHERE (
+	SELECT COUNT(*) FROM student st
+    WHERE st.section_id = s.section_id
+) > 4;
+
+
+Exercice 2.7.8 – Donner la liste des étudiants premiers de leur section en terme de résultat 
+annuel et qui n’appartiennent pas aux sections dont le résultat moyen est inférieure à 10 
+
+SELECT st.last_name , st.first_name , st.section_id FROM student st WHERE st.year_result = ( SELECT MAX(ste.year_result) FROM student ste WHERE ste.section_id = st.section_id ) AND st.section_id NOT IN ( SELECT stu.section_id FROM student stu GROUP BY stu.section_id HAVING AVG(stu.year_result) < 10 ) ORDER BY st.section_id DESC;
+
+Exercice 2.7.9 – Donner la section qui possède la moyenne la plus élevée. Le résultat présente 
+le numéro de section ainsi que sa moyenne
+
+
+
+
+Exercice 2.7.10 – Ceci clôture la cinquième partie DRL du cours. Avant de passer à la 
+suite de la matière, nous vous invitons à prendre un peu de temps afin d’évaluer 
+personnellement votre niveau de compréhension de la matière en vous référant aux 
+derniers slides du module (slides d’auto-évaluation
 
 
 
